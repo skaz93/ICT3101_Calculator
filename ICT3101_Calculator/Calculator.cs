@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace ICT3101_Calculator
@@ -69,6 +70,10 @@ namespace ICT3101_Calculator
                 case "k":
                     // Calculate Defect Density.
                     result = KSSI(num1, num2, num3);
+                    break;
+                case "g":
+                    // Calculate Defect Density.
+                    result = GenMagicNum(num1);
                     break;
                 // Return text for an incorrect option entry.
                 default:
@@ -199,6 +204,30 @@ namespace ICT3101_Calculator
         public double KSSI(double num1, double num2, double num3)
         {
             return (num1 + num2 - (num2 * num3 /100));
+        }
+
+        public double GenMagicNum(double input)
+        {
+            double result = 0;
+            int choice = Convert.ToInt16(input);
+            //Dependency------------------------------
+            FileReader getTheMagic = new FileReader();
+            //----------------------------------------
+            string[] magicStrings = getTheMagic.Read(@"C:\Users\Gary\source\repos\ICT3101 Lab\ICT3101_Calculator\MagicNumbers.txt");
+            if ((choice >= 0) && (choice < magicStrings.Length))
+            {
+                result = Convert.ToDouble(magicStrings[choice]);
+            }
+            result = (result > 0) ? (2 * result) : (-2 * result);
+            return result;
+        }
+
+        public class FileReader
+        {
+            public string[] Read(string path)
+            {
+                return File.ReadAllLines(path);
+            }
         }
     }
 }

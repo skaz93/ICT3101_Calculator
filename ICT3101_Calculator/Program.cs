@@ -72,6 +72,7 @@ namespace ICT3101_Calculator
                 Console.WriteLine("\te - AverageExpectedFailure");
                 Console.WriteLine("\tdd - DefectDensity");
                 Console.WriteLine("\tk - KSSI of 2nd release");
+                Console.WriteLine("\tg - Magic Number");
                 Console.Write("Your option? ");
                 string op = Console.ReadLine();
                 try

@@ -207,5 +207,32 @@ namespace ICT3101_Calculator.UnitTests
             // Assert
             Assert.That(() => _calculator.Combination(4, 5), Throws.ArgumentException);
         }
+
+        [Test]
+        public void MagicGen_Input4_ResultShouldBe8()
+        {
+            // Act
+            double result = _calculator.GenMagicNum(2);
+            // Assert
+            Assert.That(result, Is.EqualTo(8));
+        }
+
+        [Test]
+        public void MagicGen_InputNeg4_ResultShouldBe0()
+        {
+            // Act
+            double result = _calculator.GenMagicNum(-4);
+            // Assert
+            Assert.That(result, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void MagicGen_Input0_ResultShouldBe0()
+        {
+            // Act
+            double result = _calculator.GenMagicNum(0);
+            // Assert
+            Assert.That(result, Is.EqualTo(10));
+        }
     }
 }
