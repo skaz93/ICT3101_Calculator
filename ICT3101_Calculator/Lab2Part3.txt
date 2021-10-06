@@ -1,0 +1,11 @@
+﻿Epic
+- Allow to engineers to perform quality metric calculations efficiently without human errors.
+
+User Stories
+-	As a engineer
+	I want to be able to calculate the defect density of a system using a program
+	So that i can reduce the risk of human errors in calculation
+
+-	As a engineer
+	I want to be able to perform calculation of the second SSI in the 2nd release of a system using a program
+	So that i can reduce the amount of work i have
