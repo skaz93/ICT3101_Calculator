@@ -12,6 +12,8 @@ namespace ICT3101_Calculator
         {
             double result = double.NaN; // Default value
                                         // Use a switch statement to do the math.
+            
+            FileReader getTheMagic = new FileReader();
             switch (op)
             {
                 case "a":
@@ -73,7 +75,7 @@ namespace ICT3101_Calculator
                     break;
                 case "g":
                     // Calculate Defect Density.
-                    result = GenMagicNum(num1);
+                    result = GenMagicNum(num1, getTheMagic);
                     break;
                 // Return text for an incorrect option entry.
                 default:
@@ -206,14 +208,14 @@ namespace ICT3101_Calculator
             return (num1 + num2 - (num2 * num3 /100));
         }
 
-        public double GenMagicNum(double input)
+        public double GenMagicNum(double input, IFileReader fileReader)
         {
             double result = 0;
             int choice = Convert.ToInt16(input);
             //Dependency------------------------------
-            FileReader getTheMagic = new FileReader();
+ /*           FileReader getTheMagic = new FileReader();*/
             //----------------------------------------
-            string[] magicStrings = getTheMagic.Read(@"C:\Users\Gary\source\repos\ICT3101 Lab\ICT3101_Calculator\MagicNumbers.txt");
+            string[] magicStrings = fileReader.Read(@"C:\Users\Gary\source\repos\ICT3101 Lab\ICT3101_Calculator\MagicNumbers.txt");
             if ((choice >= 0) && (choice < magicStrings.Length))
             {
                 result = Convert.ToDouble(magicStrings[choice]);
@@ -222,12 +224,19 @@ namespace ICT3101_Calculator
             return result;
         }
 
-        public class FileReader
+
+    }
+    public interface IFileReader
+    {
+        string[] Read(string path);
+    }
+
+    public class FileReader : IFileReader
+
+    {
+        public string[] Read(string path)
         {
-            public string[] Read(string path)
-            {
-                return File.ReadAllLines(path);
-            }
+            return File.ReadAllLines(path);
         }
     }
 }

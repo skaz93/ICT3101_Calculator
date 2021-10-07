@@ -6,11 +6,16 @@ namespace ICT3101_Calculator.UnitTests
     public class CalculatorTests
     {
         private Calculator _calculator;
+        public FileReader _fileReader;
+
         [SetUp]
         public void Setup()
         {
             // Arrange
             _calculator = new Calculator();
+            _fileReader = new FileReader();
+            
+           
         }
         [Test]
         public void Add_WhenAddingTwoNumbers_ResultEqualToSum()
@@ -212,7 +217,7 @@ namespace ICT3101_Calculator.UnitTests
         public void MagicGen_Input4_ResultShouldBe8()
         {
             // Act
-            double result = _calculator.GenMagicNum(2);
+            double result = _calculator.GenMagicNum(2, _fileReader);
             // Assert
             Assert.That(result, Is.EqualTo(8));
         }
@@ -221,7 +226,7 @@ namespace ICT3101_Calculator.UnitTests
         public void MagicGen_InputNeg4_ResultShouldBe0()
         {
             // Act
-            double result = _calculator.GenMagicNum(-4);
+            double result = _calculator.GenMagicNum(-4, _fileReader);
             // Assert
             Assert.That(result, Is.EqualTo(0));
         }
@@ -230,7 +235,7 @@ namespace ICT3101_Calculator.UnitTests
         public void MagicGen_Input0_ResultShouldBe0()
         {
             // Act
-            double result = _calculator.GenMagicNum(0);
+            double result = _calculator.GenMagicNum(0, _fileReader);
             // Assert
             Assert.That(result, Is.EqualTo(10));
         }
