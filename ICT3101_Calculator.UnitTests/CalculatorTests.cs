@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using ICT3101_Calculator;
+using Moq;
 
 namespace ICT3101_Calculator.UnitTests
 {
@@ -7,6 +8,7 @@ namespace ICT3101_Calculator.UnitTests
     {
         private Calculator _calculator;
         public FileReader _fileReader;
+        private Mock<IFileReader> _mockFileReader;
 
         [SetUp]
         public void Setup()
@@ -14,8 +16,13 @@ namespace ICT3101_Calculator.UnitTests
             // Arrange
             _calculator = new Calculator();
             _fileReader = new FileReader();
-            
-           
+
+            _mockFileReader = new Mock<IFileReader>();
+            _mockFileReader.Setup(fr =>
+            fr.Read("MagicNumbers.txt")).Returns(new string[12] { "5", "67", "4", "35", "213", "6", "45", "123", "2", "56", "69", "34" });
+            _calculator = new Calculator();
+
+
         }
         [Test]
         public void Add_WhenAddingTwoNumbers_ResultEqualToSum()
@@ -217,7 +224,7 @@ namespace ICT3101_Calculator.UnitTests
         public void MagicGen_Input4_ResultShouldBe8()
         {
             // Act
-            double result = _calculator.GenMagicNum(2, _fileReader);
+            double result = _calculator.GenMagicNum(2, _mockFileReader.Object);
             // Assert
             Assert.That(result, Is.EqualTo(8));
         }
@@ -226,7 +233,7 @@ namespace ICT3101_Calculator.UnitTests
         public void MagicGen_InputNeg4_ResultShouldBe0()
         {
             // Act
-            double result = _calculator.GenMagicNum(-4, _fileReader);
+            double result = _calculator.GenMagicNum(-4, _mockFileReader.Object);
             // Assert
             Assert.That(result, Is.EqualTo(0));
         }
@@ -235,7 +242,7 @@ namespace ICT3101_Calculator.UnitTests
         public void MagicGen_Input0_ResultShouldBe0()
         {
             // Act
-            double result = _calculator.GenMagicNum(0, _fileReader);
+            double result = _calculator.GenMagicNum(0, _mockFileReader.Object);
             // Assert
             Assert.That(result, Is.EqualTo(10));
         }
