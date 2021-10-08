@@ -213,7 +213,6 @@ namespace ICT3101_Calculator
             double result = 0;
             int choice = Convert.ToInt16(input);
             //Dependency------------------------------
-            /*           FileReader getTheMagic = new FileReader();*/
             //----------------------------------------
             /*           string[] magicStrings = fileReader.Read(@"C:\Users\Gary\source\repos\ICT3101 Lab\ICT3101_Calculator\MagicNumbers.txt");*/
             string[] magicStrings = fileReader.Read("MagicNumbers.txt");

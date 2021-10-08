@@ -239,7 +239,7 @@ namespace ICT3101_Calculator.UnitTests
         }
 
         [Test]
-        public void MagicGen_Input0_ResultShouldBe0()
+        public void MagicGen_Input0_ResultShouldBe10()
         {
             // Act
             double result = _calculator.GenMagicNum(0, _mockFileReader.Object);
