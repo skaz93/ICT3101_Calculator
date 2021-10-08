@@ -37,6 +37,15 @@ namespace ICT3101_Calculator.UnitTests
             // Assert
             Assert.That(result, Is.EqualTo(10));
         }
+
+        [Test]
+        public void AdditionalMagicGen_Input2_ResultShouldBe0()
+        {
+            // Act
+            double result = _calculator.GenMagicNum(2, _mockFileReader.Object);
+            // Assert
+            Assert.That(result, Is.EqualTo(8));
+        }
     }
 
     
